@@ -2,10 +2,10 @@
 import './App.css';
 import BlackJack from './pages/blackjack';
 
-const App = ( ) => {
+const App = () => {
   return (
     <div className="App">
-      <BlackJack></BlackJack>
+      <BlackJack/>
     </div>
   );
 }

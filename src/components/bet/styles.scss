@@ -1,19 +1,15 @@
-.bet{
+.bet {
   width: 100%;
   height: 20%;
-  background-image: url('../../assets/backgroundForChips.jfif');
+  border-top: 3px solid #C5C680;
+  background-image: url("../../assets/backgroundForChips.jfif");
   background-size: cover;
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
 
   .chip{
-    cursor: pointer;
-    color: white;
-    border-radius: 50%;
-    background-size:cover;
-    width: 20%;
-    height: 100%;
-    background-image: url('../../assets/chip.svg');
+    cursor: pointer; 
   }
 }
