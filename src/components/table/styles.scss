@@ -3,4 +3,14 @@
   height: 100%;
   background-image: url('../../assets/blackjack.png');
   background-size: cover;
+
+  .current-money {
+    position: absolute;
+    color: #C5C680;
+    font-size: xx-large;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
 }

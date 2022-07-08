@@ -1,6 +1,7 @@
 .bet {
   width: 100%;
   height: 20%;
+  border-top: 3px solid #C5C680;
   background-image: url("../../assets/backgroundForChips.jfif");
   background-size: cover;
   display: flex;
@@ -9,11 +10,6 @@
   justify-content: space-between;
 
   .chip{
-    cursor: pointer;
-    
-  }
-  .chip500 {
-    cursor: pointer;
-    width: 30%
+    cursor: pointer; 
   }
 }

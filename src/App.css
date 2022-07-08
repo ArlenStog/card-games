@@ -5,3 +5,8 @@
   justify-content: center;
   padding: 3rem 0.5rem;
 }
+
+body {
+  background-image: url("./assets/app-background.jpg");
+  background-size: cover;
+}
