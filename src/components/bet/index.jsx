@@ -7,14 +7,14 @@ import { ReactComponent as Chip100 } from '../../assets/chip100.svg'
 
 import "./styles.scss";
 
-const Bet = () => {
+const Bet = ( {handleClick} ) => {
   return (
     <div className="bet">
-      <Chip5 className="chip"/>
-      <Chip10 className="chip"/>
-      <Chip15 className="chip"/>
-      <Chip50 className="chip"/>
-      <Chip100 className="chip"/>
+      <Chip5 className="chip" onClick={() => handleClick(5)} />
+      <Chip10 className="chip" onClick={() => handleClick(10)} />
+      <Chip15 className="chip" onClick={() => handleClick(15)} />
+      <Chip50 className="chip" onClick={() => handleClick(50)} />
+      <Chip100 className="chip" onClick={() => handleClick(100)} />
     </div>
   );
 };

@@ -11,7 +11,6 @@ const BlackJack = () => {
   return (
     <div className="black-jack">
       <Table/>
-      <Bet/>
     </div>
   );
 };
