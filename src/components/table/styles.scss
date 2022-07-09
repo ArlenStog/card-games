@@ -1,16 +1,65 @@
-.table{
+.table-and-bet {
   width: 100%;
   height: 100%;
-  background-image: url('../../assets/blackjack.png');
-  background-size: cover;
 
-  .current-money {
-    position: absolute;
-    color: #C5C680;
-    font-size: xx-large;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  .table {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/blackjack.png');
+    background-size: cover;
+
+    .money {
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .current-money {
+        color: #C5C680;
+        font-size: xx-large;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .bet-money {
+        width: 100%;
+        color: #C5C680;
+        font-size: xx-large;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .buttons {
+      height: 20%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 5%;
+      padding-top: 2%;
+      .button {
+        background-color: #C5C680;
+        color: #076A32;
+        justify-self: flex-end;
+      }
+      .cards {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-self: center;
+        .card{
+          justify-self: center;
+
+          img{
+            border: 0.5px solid #000;
+            border-radius: 10px;
+            height: 175px;
+            width: 120px;
+          }
+        }
+      }
+    }
+
   }
 }
