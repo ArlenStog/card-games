@@ -2,11 +2,11 @@ import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
-import { pokemonReducer } from './pokemon/pokemons.slice'
+import { cardReducer } from './blackjack/cards.slice'
 
 const middlewares = [logger, thunk]
 
 export const store = configureStore({
-  reducer: pokemonReducer,
+  reducer: cardReducer,
   middleware: middlewares
 })
