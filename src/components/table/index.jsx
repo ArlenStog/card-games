@@ -5,7 +5,8 @@ import './styles.scss';
 
 const Table = () =>{
   const [currentMoney, setCurrentMoney] = useState(0);
-
+  const [deckId, setDeckId] = useState('');
+  
   useEffect(() => {
     setCurrentMoney(1000);
   }, []);
