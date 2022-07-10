@@ -19,6 +19,8 @@ const Table = () => {
   const [checkDeal, setCheckDeal] = useState(false);
   const [playerPoints, setPlayerPoints] = useState(0);
   const [dealerPoints, setDealerPoints] = useState(0);
+  const [checkStand, setCheckStand] = useState(false);
+  const [gameEnd, setGameEnd] = useState("");
   const handleClick = (bet) => {
     if (currentMoney >= bet) {
       setCurrentMoney(currentMoney - bet);
@@ -50,37 +52,51 @@ const Table = () => {
     if (response.status === 200) {
       setPlayerCards((oldCards) => [...oldCards, response.data.cards[0]]);
     }
+    console.log(playerPoints);
   };
-  
-  const dealerDraw = async() =>{
+
+  const dealerDraw = async () => {
     const response = await axios.get(
       `https://www.deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`
     );
     if (response.status === 200) {
       setDealerCards((oldCards) => [...oldCards, response.data.cards[0]]);
     }
-  }
+  };
 
-  const handleStandClick = () =>{
-    
-    if(dealerPoints < 17){
-      dealerDraw();
+  const handleStandClick = () => {
+    setCheckStand(true);
+  };
+  const gameWinner = () => {
+    if (dealerPoints === 21) {
+      setGameEnd("YOU LOSE!!!");
+      return;
+    }
+    if (playerPoints === 21) {
+      setGameEnd("YOU WIN!!!");
+      return;
+    }
+    if (
+      (playerPoints > dealerPoints && playerPoints < 22) ||
+      dealerPoints > 21
+    ) {
+      setGameEnd("YOU WIN!!!");
     }
 
-    if((dealerPoints > playerPoints && dealerPoints < 21) || dealerPoints===21){
-      alert('you lost');
-      newGame(0);
+    if (
+      (dealerPoints > playerPoints && dealerPoints < 22) ||
+      playerPoints > 21
+    ) {
+      setGameEnd("YOU LOSE!!!");
     }
-    if(dealerPoints < playerPoints){
-      alert('you win');
-      newGame(1);
-    }
-    if(dealerPoints ===playerPoints){
-      alert('tie');
-      newGame(2);
+    if (
+      playerPoints >= 17 &&
+      dealerPoints >= 17 &&
+      playerPoints === dealerPoints
+    ) {
+      setGameEnd("TIE!!!");
     }
   };
-  
   const handleDealClick = async () => {
     setCheckBet(false);
     setCheckDeal(true);
@@ -119,13 +135,12 @@ const Table = () => {
   };
   const checkIfLost = () => {
     if (playerPoints > 21) {
-      alert('you lose');
-      newGame(0);
+      setGameEnd("YOU LOSE!!!");
     }
   };
 
-  const newGame = (check) =>{
-    if(check===0){
+  const newGame = (check) => {
+    if (check === "YOU LOSE!!!") {
       setCheckBet(false);
       setCheckDeal(false);
       setPlayerCards([]);
@@ -133,29 +148,34 @@ const Table = () => {
       setPlayerPoints(0);
       setDealerPoints(0);
       setBetMoney(0);
+      setGameEnd("");
+      setCheckStand(false);
     }
-    if(check===1){
+    if (check === "YOU WIN!!!") {
       setCheckBet(false);
       setCheckDeal(false);
       setPlayerCards([]);
       setDealerCards([]);
       setPlayerPoints(0);
       setDealerPoints(0);
-      setCurrentMoney(currentMoney => currentMoney + betMoney*2)
+      setCurrentMoney((currentMoney) => currentMoney + betMoney * 2);
       setBetMoney(0);
+      setGameEnd("");
+      setCheckStand(false);
     }
-    if(check===2){
+    if (check === "TIE!!!") {
       setCheckBet(false);
       setCheckDeal(false);
       setPlayerCards([]);
       setDealerCards([]);
       setPlayerPoints(0);
       setDealerPoints(0);
-      setCurrentMoney(currentMoney => currentMoney + betMoney)
+      setCurrentMoney((currentMoney) => currentMoney + betMoney);
       setBetMoney(0);
+      setGameEnd("");
+      setCheckStand(false);
     }
-
-  }
+  };
   useEffect(() => {
     dispatch(cardsAll());
     setCurrentMoney(1000);
@@ -172,14 +192,35 @@ const Table = () => {
   useEffect(() => {
     checkIfLost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playerPoints,playerCards]);
+  }, [playerPoints]);
+  useEffect(() => {
+    if (checkStand) {
+      if (dealerPoints < 17) {
+        dealerDraw();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkStand, dealerPoints]);
+  useEffect(() => {
+    if(checkStand){
+      gameWinner();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dealerPoints, playerPoints,checkStand]);
   return (
     <div className="table-and-bet">
       <div className="table">
         <div className="money">
           <div className="current-money">
-            <AttachMoneyRoundedIcon sx={{ fontSize: 40 }} />
-            {currentMoney}
+            <div>${currentMoney}</div>
+            <div className="game-end">{gameEnd}</div>
+            <Button
+              variant="contained"
+              className="button"
+              onClick={() => newGame(gameEnd)}
+            >
+              NEW GAME
+            </Button>
           </div>
           <div className="cards">
             <div className="points">{dealerPoints}</div>
