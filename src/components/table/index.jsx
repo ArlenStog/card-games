@@ -24,6 +24,13 @@ const Table = () => {
   const [gameEnd, setGameEnd] = useState("");
   const [doubleShow, setDoubleShow] = useState(true);
 
+  const decoy = {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Card_back_01.svg/128px-Card_back_01.svg.png",
+    "value": "0",
+    "suit":"none",
+    "code":"back",
+  }
+
   const handleClick = (bet) => {
     if (currentMoney >= bet) {
       setCurrentMoney(currentMoney - bet);
@@ -41,7 +48,7 @@ const Table = () => {
       `https://www.deckofcardsapi.com/api/deck/${deck_id}/draw/?count=2`
     );
     const dealerResponse = await axios.get(
-      `https://www.deckofcardsapi.com/api/deck/${deck_id}/draw/?count=2`
+      `https://www.deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`
     );
     if (dealerResponse.status === 200 && response.status === 200) {
       setPlayerCards(response.data.cards);
@@ -232,10 +239,14 @@ const Table = () => {
               (dealerPoints !== 0) && <div className="dealer-points">{dealerPoints}</div>
             }
             
-            {dealerCards.map((card, index) => (
+            {
+            
+            dealerCards.map((card, index) => (
               <div className="card" key={index}>
                 <img alt="card" src={card.image} />
+                {checkStand ? null : <img className="back" alt="Backcard" src={decoy.image} />}
               </div>
+            
             ))}
           </div>
           {(betMoney!==0) && <div className="bet-money">
