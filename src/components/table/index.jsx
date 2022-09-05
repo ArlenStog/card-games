@@ -211,6 +211,9 @@ const Table = () => {
         <div className="money">
           <div className="current-money">
             <div>${currentMoney}</div>
+            {
+              (gameEnd !== "") && (
+                <>
             <div className="game-end">{gameEnd}</div>
             <Button
             className="button"
@@ -219,24 +222,32 @@ const Table = () => {
           >
             NEW GAME
           </Button>
+                </>
+              )
+            }
+
           </div>
           <div className="cards">
-            <div className="points">{dealerPoints}</div>
+            {
+              (dealerPoints !== 0) && <div className="dealer-points">{dealerPoints}</div>
+            }
+            
             {dealerCards.map((card, index) => (
               <div className="card" key={index}>
                 <img alt="card" src={card.image} />
               </div>
             ))}
           </div>
-
-          <div className="bet-money">
+          {(betMoney!==0) && <div className="bet-money">
             <AttachMoneyRoundedIcon sx={{ fontSize: 40 }} />
             {betMoney}
-          </div>
+          </div>}
+          
         </div>
         <div className="buttons">
           <div className="cards">
-            <div className="points">{playerPoints}</div>
+            {(playerPoints !==0) && <div className="points">{playerPoints}</div>}
+            
             {playerCards.map((card, index) => (
               <div className="card" key={index}>
                 <img alt="card" src={card.image} />
@@ -257,6 +268,7 @@ const Table = () => {
         </div>
       </div>
       {checkDeal ? (
+        (gameEnd ==="") &&(
         <div className="button-group">
           <Button
             className="button"
@@ -287,7 +299,7 @@ const Table = () => {
               DOUBLE
             </Button>
           ) : null}
-        </div>
+        </div>)
       ) : (
         <Bet handleClick={handleClick} />
       )}
