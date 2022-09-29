@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/card-games/static/css/main.a353e062.css",
+    "main.js": "/card-games/static/js/main.49fd9bf4.js",
+    "static/js/787.3d37f2e0.chunk.js": "/card-games/static/js/787.3d37f2e0.chunk.js",
+    "static/media/app-background.jpg": "/card-games/static/media/app-background.28a57d52ed37459e6f12.jpg",
+    "static/media/blackjack.png": "/card-games/static/media/blackjack.3d354860820c74839ca8.png",
+    "static/media/chip15.svg": "/card-games/static/media/chip15.210ab8913642a4c9d10e84b426516860.svg",
+    "static/media/chip10.svg": "/card-games/static/media/chip10.689d908ae085262f7ae560754f6b3d4d.svg",
+    "static/media/backgroundForChips.jfif": "/card-games/static/media/backgroundForChips.c6f07ac8916c023b8b59.jfif",
+    "static/media/chip100.svg": "/card-games/static/media/chip100.2f20ec3cd6f51f412c9fe467a03fc7c2.svg",
+    "static/media/chip50.svg": "/card-games/static/media/chip50.d3a38394d14a28ac8a675e0a98876e0e.svg",
+    "static/media/chip5.svg": "/card-games/static/media/chip5.4165b38a4d06a2f6b5097533faed8163.svg",
+    "index.html": "/card-games/index.html",
+    "main.a353e062.css.map": "/card-games/static/css/main.a353e062.css.map",
+    "main.49fd9bf4.js.map": "/card-games/static/js/main.49fd9bf4.js.map",
+    "787.3d37f2e0.chunk.js.map": "/card-games/static/js/787.3d37f2e0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a353e062.css",
+    "static/js/main.49fd9bf4.js"
+  ]
+}
